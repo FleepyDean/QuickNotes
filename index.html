@@ -190,19 +190,18 @@
       while (notesContainer.firstChild) {
         notesContainer.removeChild(notesContainer.firstChild);
       }
-      //
-    }
 
-    // ── empty-state message ──
-    if (notes.length === 0) {
-      const emptyMsg = document.createElement("div");
-      emptyMsg.textContent = "📭 No notes yet. Add your first note!";
-      emptyMsg.style.color = "#94a3b8";
-      emptyMsg.style.textAlign = "center";
-      emptyMsg.style.padding = "1rem";
-      notesContainer.appendChild(emptyMsg);
-      updateCounter();
-      return;
+      // ── empty-state message ──
+      if (notes.length === 0) {
+        const emptyMsg = document.createElement("div");
+        emptyMsg.textContent = "📭 No notes yet. Add your first note!";
+        emptyMsg.style.color = "#94a3b8";
+        emptyMsg.style.textAlign = "center";
+        emptyMsg.style.padding = "1rem";
+        notesContainer.appendChild(emptyMsg);
+        updateCounter();
+        return;
+      }
 
     notes.forEach(note => {
       // wrapper div
@@ -218,10 +217,11 @@
 
       // delete button
       const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "🗑🗑 Delete";
+      deleteBtn.textContent = "🗑 Delete";
       deleteBtn.classList.add("delete-note");
       deleteBtn.setAttribute("data-action", "delete");
       deleteBtn.setAttribute("data-id", note.id);
+
       titleDiv.appendChild(titleSpan);
       titleDiv.appendChild(deleteBtn);
 
@@ -233,8 +233,9 @@
       noteDiv.appendChild(contentP);
       notesContainer.appendChild(noteDiv);
       });
-      updateCounter();
-    } // end renderNotes
+
+    } updateCounter();
+    // end renderNotes
 
     function addNote() {
       const title = titleInput.value.trim();
@@ -266,7 +267,7 @@
     
     function clearAllNotes() {
       if (notes.length === 0) {
-        alert("📭📭 No notes to clear.");
+        alert("📭 No notes to clear.");
       return;
       }
       const ok = confirm(
@@ -335,4 +336,5 @@
     init(); // ← call init when the page loads
   </script>
 
-</body> 
+</body>
+</html>
